@@ -84,6 +84,13 @@ module Bundler
 
           Bundler.ui.info "Fetching full source index from #{strip_user_pass_from_uri(@remote_uri)}"
           specs = fetch_all_remote_specs
+        rescue LoadError => e
+          if e.message.include?("cannot load such file -- openssl")
+            raise Bundler::HTTPError, "Could not load OpenSSL. You must" \
+              " install OpenSSL or change your gem sources from HTTPS to HTTP."
+          else
+            raise e
+          end
         else
           # new line now that the dots are over
           Bundler.ui.info "" unless Bundler.ui.debug?

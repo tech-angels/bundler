@@ -376,4 +376,16 @@ OUTPUT
       out.should_not include("#{user}:#{password}")
     end
   end
+  
+  context "when openssl has not been installed" do
+    it "explains that ruby needs OpenSSL" do
+      
+    end
+  end
+  
+  context "when openssl has been installed" do
+    it "raises a normal LoadError" do
+      
+    end
+  end
 end
