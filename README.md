@@ -29,3 +29,4 @@ See [UPGRADING](https://github.com/carlhuda/bundler/blob/master/UPGRADING.md).
 ### Other questions
 
 Feel free to chat with the Bundler core team (and many other users) on IRC in the  [#bundler](irc://irc.freenode.net/bundler) channel on Freenode, or via email on the [Bundler mailing list](http://groups.google.com/group/ruby-bundler).
+
