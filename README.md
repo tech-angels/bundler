@@ -22,10 +22,6 @@ To see what has changed in recent versions of bundler, see the [CHANGELOG](https
 
 The `master` branch contains our current progress towards version 1.1. Because of that, please submit bugfix pull requests against the `1-0-stable` branch.
 
-### Upgrading from Bundler 0.8 to 0.9 and above
-
-See [UPGRADING](https://github.com/carlhuda/bundler/blob/master/UPGRADING.md).
-
 ### Other questions
 
 Feel free to chat with the Bundler core team (and many other users) on IRC in the  [#bundler](irc://irc.freenode.net/bundler) channel on Freenode, or via email on the [Bundler mailing list](http://groups.google.com/group/ruby-bundler).
