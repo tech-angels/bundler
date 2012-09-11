@@ -77,7 +77,7 @@ module Bundler
       lookup.dup
     end
 
-    def materialize(deps, missing_specs = nil)
+    def materialize(deps, missing_specs = nil, fetch = false)
       materialized = self.for(deps, [], false, true).to_a
       deps = materialized.map {|s| s.name }.uniq
       materialized.map! do |s|
@@ -87,6 +87,12 @@ module Bundler
         if missing_specs
           missing_specs << s unless spec
         else
+          if fetch && s.source.is_a?(Bundler::Source::Rubygems) && spec.nil?
+            source      = s.source.remotes.first
+            fetcher     = Bundler::Fetcher.new(source)
+            spec        = RemoteSpecification.new(s.name, s.version, s.platform, fetcher)
+            spec.source = source
+          end
           raise GemNotFound, "Could not find #{s.full_name} in any of the sources" unless spec
         end
         spec if spec

@@ -122,6 +122,23 @@ describe "bundle clean" do
     vendored_gems("cache/bundler/git/foo-1.0-#{digest}").should exist
   end
 
+  it "does not blow up when using without groups" do
+    gemfile <<-G
+      source "file://#{gem_repo1}"
+
+      gem "rack"
+
+      group :development do
+        gem "foo"
+      end
+    G
+
+    bundle "install --path vendor/bundle --without development"
+
+    bundle :clean, :exitstatus => true
+    exitstatus.should == 0
+  end
+
   it "removes unused git gems" do
     build_git "foo", :path => lib_path("foo")
     git_path = lib_path('foo')
