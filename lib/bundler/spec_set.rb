@@ -88,10 +88,11 @@ module Bundler
           missing_specs << s unless spec
         else
           if fetch && s.source.is_a?(Bundler::Source::Rubygems) && spec.nil?
-            source      = s.source.remotes.first
-            fetcher     = Bundler::Fetcher.new(source)
-            spec        = RemoteSpecification.new(s.name, s.version, s.platform, fetcher)
-            spec.source = source
+            source           = s.source.remotes.first
+            fetcher          = Bundler::Fetcher.new(source)
+            spec             = RemoteSpecification.new(s.name, s.version, s.platform, fetcher)
+            spec.source      = source
+            spec.loaded_from = "#{Bundler.rubygems.gem_dir}/specifications/#{spec.full_name}.gemspec"
           end
           raise GemNotFound, "Could not find #{s.full_name} in any of the sources" unless spec
         end
