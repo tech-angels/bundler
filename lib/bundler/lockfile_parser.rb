@@ -26,6 +26,8 @@ module Bundler
           @state = :dependency
         elsif line == "PLATFORMS"
           @state = :platform
+        elsif line == "METADATA"
+          @state = :metadata
         else
           send("parse_#{@state}", line)
         end
@@ -123,5 +125,8 @@ module Bundler
       end
     end
 
+    def parse_metadata(line)
+      # Do nothing, METADATA section is no longer supported
+    end
   end
 end
